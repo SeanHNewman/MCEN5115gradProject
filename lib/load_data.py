@@ -6,6 +6,7 @@ class EventTimes:
     
         pass
     
+    #Method to load in the data from the csv
     def getEvents(self,filename):
         # open the file in read mode
         fileToOpen = open(filename, 'r')
@@ -13,11 +14,10 @@ class EventTimes:
         # creating dictreader object
         file = csv.DictReader(fileToOpen)
 
-        # creating empty lists
+        # creating empty list for times
         Times= []
 
-        # iterating over each row and append
-        # values to empty list
+        #Add the game times to the list and return it
         for col in file:
             Times.append(col['Game Time'])
         return Times

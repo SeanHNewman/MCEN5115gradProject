@@ -7,19 +7,6 @@ from time import sleep
 
 class LCDdisplay:
     def __init__(self, lcdMode, cols, rows, charmap, i2cExpander, address, port):
-        """
-        This constructor creates the objects for the class. It takes
-        in the information needed to establish the i2c communication
-        for the LCD.
-        Input:  lcdMode <str> - Defines communication protocal
-                cols <int> - Number of columns on the LCD
-                rows <int> - Number of rows on the LCD
-                charmap <str> - Character mapping for LCD
-                i2cExpander <str> - i2c expander information
-                address <hex> - Hex address for i2c comms
-                port <int> - raspberry pi port number
-        Output: None
-        """
         # Define object variables
         self.lcdMode = lcdMode
         self.cols = cols
@@ -31,7 +18,7 @@ class LCDdisplay:
 
         self.lcd = i2c.CharLCD(i2cExpander, address, port=port, charmap=charmap, cols=cols, rows=rows)
 
-
+    #create a method for displaying the messages
     def showMessageonLCD(self, Title, Message,SecondTitle, SecondMessage):
 
         # Turn on backlight
@@ -43,14 +30,14 @@ class LCDdisplay:
         self.lcd.write_string(Message)
         self.lcd.crlf()
 
-        # Display 1st two rows
+        # Display 2nd two rows
         self.lcd.write_string(SecondTitle)
         self.lcd.crlf()
         self.lcd.write_string(SecondMessage)
         self.lcd.crlf()
 
-        # Sleep between
-        
+
+    #Create a method to clear the screen if necessary     
     def clearScreen(self):
         # Turn on backlight
         self.lcd.backlight_enabled = True
